@@ -1,0 +1,14 @@
+{
+  "name": "cypress-cucumber",
+  "version": "1.0.0",
+  "description": "Testing out Cypress.io with Cucumber",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "author": "Steve",
+  "devDependencies": {
+    "cypress": "^3.2.0",
+    "cypress-cucumber-preprocessor": "^1.11.0"
+  }
+}
