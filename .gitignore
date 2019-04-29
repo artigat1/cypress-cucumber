@@ -48,5 +48,5 @@ ssl/server.key
 apps/functions/src/auth/firebase-key*.json
 test-results/
 
-cypress/video/**
-cypress/screenshots/**
+cypress/video/
+cypress/screenshots/
