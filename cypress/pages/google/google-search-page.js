@@ -8,7 +8,7 @@ const FEEL_LUCKY_TEXT = 'I\'m Feeling Lucky';
 
 class GoogleSearchPage {
     static visit() {
-        cy.visit('https://google.com');
+        cy.visit('/');
     }
 
     static type(query) {

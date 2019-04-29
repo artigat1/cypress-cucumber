@@ -1,14 +1,22 @@
 {
-  "name": "cypress-cucumber",
-  "version": "1.0.0",
-  "description": "Testing out Cypress.io with Cucumber",
-  "main": "index.js",
-  "scripts": {
-    "cypress:open": "cypress open"
-  },
-  "author": "Steve",
-  "devDependencies": {
-    "cypress": "^3.2.0",
-    "cypress-cucumber-preprocessor": "^1.11.0"
-  }
+    "name": "cypress-cucumber",
+    "version": "1.0.0",
+    "description": "Testing out Cypress.io with Cucumber",
+    "main": "index.js",
+    "scripts": {
+        "cypress:open": "cypress open"
+    },
+    "author": "Steve",
+    "devDependencies": {
+        "cypress": "^3.2.0",
+        "cypress-cucumber-preprocessor": "^1.11.0"
+    },
+    "cypress-cucumber-preprocessor": {
+        "nonGlobalStepDefinitions": true
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "fs-extra": "^7.0.1",
+        "glob": "^7.1.3"
+    }
 }
