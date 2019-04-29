@@ -46,3 +46,7 @@ ssl/server.crt
 ssl/server.key
 *.log
 apps/functions/src/auth/firebase-key*.json
+test-results/
+
+cypress/video/**
+cypress/screenshots/**

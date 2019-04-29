@@ -1,8 +1,13 @@
 {
-  "ignoreTestFiles": ["*.js", "*.md"],
-  "reporter": "junit",
-  "reporterOptions": {
-    "mochaFile": "test-results/test-output-[hash].xml"
-  },
-  "chromeWebSecurity": false
+    "projectId": "ix6qe6",
+    "ignoreTestFiles": [
+        "*.js",
+        "*.md"
+    ],
+    "reporter": "junit",
+    "reporterOptions": {
+        "mochaFile": "test-results/test-output-[hash].xml"
+    },
+    "chromeWebSecurity": false,
+    "projectId": "ix6qe6"
 }
