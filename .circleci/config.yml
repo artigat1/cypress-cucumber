@@ -37,10 +37,3 @@ workflows:
           parallel: true
           parallelism: 2
           group: '2x-chrome'
-          start: 'npm run e2e:record:parallel'
-
-      - release:
-          filters:
-            branches:
-              only:
-                - master
