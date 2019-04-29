@@ -7,26 +7,67 @@
 # to use CircleCI orbs need to use version >= 2.1
 version: 2.1
 orbs:
-    # use Cypress orb from CircleCI registry
-    cypress: cypress-io/cypress@1
+  # use Cypress orb from CircleCI registry
+  cypress: cypress-io/cypress@1
 
+####
+# Variables
+####
+var_1: &working_directory ~/tmp
+var_2: &cache_key v1-artigat1-{{ checksum "package-lock.json" }}
+
+####
+# Anchors
+####
+anchor_2: &root_package_lock_key
+  key: *cache_key
+
+anchor_3: &fast-checkout
+  attach_workspace:
+    at: *working_directory
+
+anchor_4: &workspace_config
+  root: *working_directory
+  paths:
+    - .
+
+anchor_5: &delete_node_modules
+  name: Delete node_modules so we can persist quickly
+  command: rm -R -f ~/tmp/node_modules
+  
 workflows:
 
-    build:
-        jobs:
-            # run on 2 machines using Chrome browser
-            -   cypress/run:
-                    no-workspace: true
-                    name: '2 machines using Chrome'
-                    # use executor with Chrome installed
-                    executor: cypress/browsers-chrome69
-                    # use browser "chrome" for running tests
-                    browser: chrome
-                    record: true
-                    parallel: true
-                    parallelism: 2
-                    group: '2x-chrome'
-                    spec: cypress/integration/google
-                    post-steps:
-                        - store_test_results:
-                              path: test-results
+  build:
+    jobs:
+      - checkout:
+          - run:
+              name: show current branch
+              command: echo ${CIRCLE_BRANCH}
+          - run: rm -rf .git
+          - restore_cache: *root_package_lock_key
+          - run:
+              name: install-dependencies
+              command: npm ci     
+          - save_cache:
+              <<: *root_package_lock_key
+              paths:
+                - ~/.npm
+                - ~/.cache
+                - ~/tmp/node_modules
+          - run: *delete_node_modules
+              - persist_to_workspace: *workspace_config
+      # run on 2 machines using Chrome browser
+      - cypress/run:
+          name: '2 machines using Chrome'
+          # use executor with Chrome installed
+          executor: cypress/browsers-chrome69
+          # use browser "chrome" for running tests
+          browser: chrome
+          record: true
+          parallel: true
+          parallelism: 2
+          group: '2x-chrome'
+          spec: cypress/integration/google
+          post-steps:
+            - store_test_results:
+                path: test-results
