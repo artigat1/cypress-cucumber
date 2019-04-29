@@ -7,33 +7,21 @@
 # to use CircleCI orbs need to use version >= 2.1
 version: 2.1
 orbs:
-  # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.5.1
-
-executors:
-  mac:
-    macos:
-      xcode: "10.1.0"
-
-jobs:
-  release:
-    executor: cypress/base-10
-    steps:
-      - attach_workspace:
-          at: ~/
+    # use Cypress orb from CircleCI registry
+    cypress: cypress-io/cypress@1
 
 workflows:
 
-  linux-build:
-    jobs:
-      # run on 2 machines using Chrome browser
-      - cypress/run:
-          name: '2 machines using Chrome'
-          # use executor with Chrome installed
-          executor: cypress/browsers-chrome69
-          # use browser "chrome" for running tests
-          browser: chrome
-          record: true
-          parallel: true
-          parallelism: 2
-          group: '2x-chrome'
+    build:
+        jobs:
+            # run on 2 machines using Chrome browser
+            -   cypress/run:
+                    name: '2 machines using Chrome'
+                    # use executor with Chrome installed
+                    executor: cypress/browsers-chrome69
+                    # use browser "chrome" for running tests
+                    browser: chrome
+                    record: true
+                    parallel: true
+                    parallelism: 2
+                    group: '2x-chrome'

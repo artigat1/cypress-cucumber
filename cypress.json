@@ -8,6 +8,5 @@
     "reporterOptions": {
         "mochaFile": "test-results/test-output-[hash].xml"
     },
-    "chromeWebSecurity": false,
-    "projectId": "ix6qe6"
+    "chromeWebSecurity": false
 }

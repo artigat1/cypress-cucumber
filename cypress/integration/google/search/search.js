@@ -12,21 +12,21 @@ Then(/^I have some results$/, () => {
 });
 
 
-describe('Google Search', () => {
-    it('Doctorlink is 1st search result', () => {
-        const query = 'doctorlink';
-        const link = 'https://www.doctorlink.com/';
-
-        GoogleSearchPage.visit();
-        cy.url().should('include', 'google');
-
-        GoogleSearchPage.type(query);
-
-        GoogleSearchPage.pressSearch();
-
-        cy.get(`a[href="${link}"`)
-            .first()
-            .should('have.attr', 'href', link);
-
-    });
-});
+// describe('Google Search', () => {
+//     it('Doctorlink is 1st search result', () => {
+//         const query = 'doctorlink';
+//         const link = 'https://www.doctorlink.com/';
+//
+//         GoogleSearchPage.visit();
+//         cy.url().should('include', 'google');
+//
+//         GoogleSearchPage.type(query);
+//
+//         GoogleSearchPage.pressSearch();
+//
+//         cy.get(`a[href="${link}"`)
+//             .first()
+//             .should('have.attr', 'href', link);
+//
+//     });
+// });
