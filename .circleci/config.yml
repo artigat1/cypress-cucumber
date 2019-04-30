@@ -10,14 +10,11 @@ orbs:
   # use Cypress orb from CircleCI registry
   cypress: cypress-io/cypress@1
 
-jobs:
-  checkout:
-    steps:
+workflows:
+  test:
+    jobs:
       - checkout
       - run: npm ci
-
-  test:
-    steps:
       - cypress/run:
           name: '2 machines using Chrome'
           # use executor with Chrome installed
@@ -31,11 +28,4 @@ jobs:
           spec: cypress/integration/google
           post-steps:
             - store_test_results:
-                path: test-results
-
-workflows:
-  version: 2.1
-  run-tests:
-    jobs:
-      - checkout
-      - test
+                path: test-results     
