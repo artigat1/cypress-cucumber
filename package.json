@@ -5,8 +5,7 @@
     "main": "index.js",
     "scripts": {
         "cypress:open": "cypress open",
-        "cypress:record": "cypress run --record --key f905d445-5391-47d8-9e25-53d008693e4c",
-        "e2e:record:parallel": "cypress run --record --parallel --key f905d445-5391-47d8-9e25-53d008693e4c"
+        "cypress:record": "set PERCY_TOKEN=1074361239197f48cb25414866714d15540e3147e8e7791e4898f9e6eee1fc5b && percy  exec -- cypress.cmd run  --record --key f905d445-5391-47d8-9e25-53d008693e4c"
     },
     "author": "Steve",
     "devDependencies": {

@@ -28,9 +28,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-          command: ./node_modules/cypress/bin/cypress run  --parallel --record --key ${CYPRESS_KEY}
+          command: percy  exec -- ./node_modules/cypress/bin/cypress run  --parallel --record --key ${CYPRESS_KEY}
           
       - store_test_results:
           path: ./test-results
-
-      - percy/finalize_all
