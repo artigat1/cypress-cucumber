@@ -34,40 +34,35 @@ anchor_4: &workspace_config
 anchor_5: &delete_node_modules
   name: Delete node_modules so we can persist quickly
   command: rm -R -f ~/tmp/node_modules
-  
+
 workflows:
 
   build:
     jobs:
-      - checkout:
-          - run:
-              name: show current branch
-              command: echo ${CIRCLE_BRANCH}
-          - run: rm -rf .git
-          - restore_cache: *root_package_lock_key
-          - run:
-              name: install-dependencies
-              command: npm ci     
-          - save_cache:
-              <<: *root_package_lock_key
-              paths:
-                - ~/.npm
-                - ~/.cache
-                - ~/tmp/node_modules
-          - run: *delete_node_modules
-              - persist_to_workspace: *workspace_config
-      # run on 2 machines using Chrome browser
-      - cypress/run:
-          name: '2 machines using Chrome'
-          # use executor with Chrome installed
-          executor: cypress/browsers-chrome69
-          # use browser "chrome" for running tests
-          browser: chrome
-          record: true
-          parallel: true
-          parallelism: 2
-          group: '2x-chrome'
-          spec: cypress/integration/google
-          post-steps:
-            - store_test_results:
-                path: test-results
+    checkout:
+      steps:
+        - checkout
+        # Log the current branch
+        - run:
+            name: show current branch
+            command: echo ${CIRCLE_BRANCH}
+        - run: rm -rf .git
+        - restore_cache: *root_package_lock_key
+        - run:
+            name: install-dependencies
+            command: npm ci
+        # run on 2 machines using Chrome browser
+        - cypress/run:
+            name: '2 machines using Chrome'
+            # use executor with Chrome installed
+            executor: cypress/browsers-chrome69
+            # use browser "chrome" for running tests
+            browser: chrome
+            record: true
+            parallel: true
+            parallelism: 2
+            group: '2x-chrome'
+            spec: cypress/integration/google
+            post-steps:
+              - store_test_results:
+                  path: test-results
