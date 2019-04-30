@@ -25,3 +25,6 @@ jobs:
 
       - run:
           command: ./node_modules/cypress/bin/cypress run  --parallel --record --key ${CYPRESS_KEY}
+          
+      - store_test_results:
+          path: ./test-results
