@@ -8,6 +8,8 @@ When(/^Press 'Search'$/, () => {
 });
 
 Then(/^I have some results$/, () => {
+    // Take a snapshot for visual diffing
+    cy.percySnapshot('Doctorlink search results');
     GoogleResultsPage.expect().toHaveResults();
 });
 

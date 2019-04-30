@@ -10,6 +10,7 @@
     },
     "author": "Steve",
     "devDependencies": {
+        "@percy/cypress": "^1.0.7",
         "cypress": "^3.2.0",
         "cypress-cucumber-preprocessor": "^1.11.0"
     },
