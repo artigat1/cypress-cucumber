@@ -24,4 +24,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-          command: npm run e2e:record:parallel
+          command: ./node_modules/cypress/bin/cypress run  --parallel --record --key ${CYPRESS_KEY}
