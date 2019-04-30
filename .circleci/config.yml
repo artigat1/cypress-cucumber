@@ -13,8 +13,6 @@ orbs:
 workflows:
   test:
     jobs:
-      - checkout
-      - run: npm ci
       - cypress/run:
           name: '2 machines using Chrome'
           # use executor with Chrome installed
